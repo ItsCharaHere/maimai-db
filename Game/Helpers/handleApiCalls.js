@@ -2,9 +2,9 @@ const grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
 path = require('path')
 
-function handleApiCalls(proto){
-	var PROTO_PATH = path.join(__dirname + `\\..\\Secrets\\proto\\mythos\\maimai\\v0\\${proto}.proto`);
-	
+function handleApiCalls(type, proto){
+	var PROTO_PATH = path.join(__dirname + `\\..\\Secrets\\proto\\mythos\\${type}\\v0\\${proto}.proto`);
+		
 	var packageDefinition = protoLoader.loadSync(
 		PROTO_PATH,
 		{keepCase: true,

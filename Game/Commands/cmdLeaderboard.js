@@ -36,7 +36,7 @@ async function cmdLeaderboard(game, msg, increment = 0, cache = null){
 async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, increment = 0){
 	let queryLog = ``;
 
-	proto = handleApiCalls("leaderboard")
+	proto = handleApiCalls("maimai","leaderboard")
 	try {
 	var client = new proto.MaimaiLeaderboard(Secrets.MYTHOS,grpc.credentials.createSsl());
 	} catch {
