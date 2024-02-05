@@ -13,6 +13,7 @@
     "kuroshiro": "~1.2.0",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
     "node.js": "^0.0.1-security",
+    "punycode": "^2.3.1",
     "puppeteer": "^21.1.1",
     "sqlite3": "^5.1.6",
     "string-pixel-width": "^1.11.0",

@@ -1,5 +1,5 @@
 const { IntentsBitField, AttachmentBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ActivityType } = require('discord.js');
-const { Constants, Commands } = require("./constants.js");
+const { Constants, Commands, CommandMai, CommandChuni,CommandGeki } = require("./constants.js");
 const getIsScorePostAsync = require("./Helpers/getIsScorePostAsync.js");
 const getCommand = require("./Helpers/getCommand.js");
 
@@ -31,7 +31,11 @@ module.exports = class Game {
 		}
 
     // Check to see if player wants to execute a command
-    if (!msg.content.startsWith(Constants.Prefix)){
+	var GamePrefix = msg.content.startsWith(Constants.PrefixMai || Constants.PrefixGeki || Constants.PrefixChuni)
+	var IsMai = msg.content.startsWith(Constants.PrefixMai )
+	var IsChuni = msg.content.startsWith(Constants.PrefixChuni )
+	var IsGeki = msg.content.startsWith(Constants.PrefixGeki )
+    if (!GamePrefix){
     	return;
     }
 
@@ -54,62 +58,71 @@ module.exports = class Game {
 			}
 			return;
 		}
-
-    switch(cmd){
-			case Commands.HELP:
-				this.commands.cmdHelp(this, msg);
-				return;
-			case Commands.SEARCH:
-				this.commands.cmdSearch(this, msg);
-				return;
-      case Commands.RANDOM:
-        this.commands.cmdRandom(this, msg);
-        return;
-			case Commands.CALC:
-				this.commands.cmdCalc(this, msg);
-				return;
-			case Commands.AMAKAGE:
-				this.commands.cmdAmakage(msg);
-				return;
-			case Commands.TOP:
-				this.commands.cmdTop(this, msg);
-				return;
-			case Commands.STATS:
-				this.commands.cmdStats(this, msg);
-				return;
-			case Commands.ADD:
-				this.commands.cmdAdd(this, msg);
-				return;
-			case Commands.REMOVE:
-				this.commands.cmdRemove(this, msg);
-				return;
-			case Commands.IMAGE:
-				this.commands.cmdImage(this, msg);
-				return;
-			case Commands.BOOK:
-				this.commands.cmdBook(this, msg);
-				return;
-			case Commands.SETALIAS:
-				this.commands.cmdSetAlias(this, msg);
-				return;
-			case Commands.SETVERSION:
-				this.commands.cmdSetVersion(this, msg);
-				return;
-			case Commands.SETDEBUG:
-				this.commands.cmdSetDebug(this, msg);
-				return;
-			case Commands.SETTAGS:
-				this.commands.cmdSetTags(this, msg);
-				return;
-			case Commands.STATUS:
-				this.commands.cmdStatus(this, msg);
-				return;
-			case Commands.CREDITS:
-				this.commands.cmdCredits(this, msg);
-				return;
-			case Commands.LEADERBOARD:
-				this.commands.cmdLeaderboard(this, msg);
-				return;
+	
+	console.log(msg.content)
+    switch(msg.content){
+		
+		case msg.content.startsWith(Constants.PrefixMai):
+			console.log("game prefix is mai")
+			switch(cmd){
+				case CommandMai.LEADERBOARD:
+					this.CommandMai.maiLeaderboard(this,msg);
+					return
+			}
+			// case Commands.HELP:
+			// 	this.commands.cmdHelp(this, msg);
+			// 	return;
+	// 		case Commands.SEARCH:
+	// 			this.commands.cmdSearch(this, msg);
+	// 			return;
+    //   case Commands.RANDOM:
+    //     this.commands.cmdRandom(this, msg);
+    //     return;
+	// 		case Commands.CALC:
+	// 			this.commands.cmdCalc(this, msg);
+	// 			return;
+	// 		case Commands.AMAKAGE:
+	// 			this.commands.cmdAmakage(msg);
+	// 			return;
+	// 		case Commands.TOP:
+	// 			this.commands.cmdTop(this, msg);
+	// 			return;
+	// 		case Commands.STATS:
+	// 			this.commands.cmdStats(this, msg);
+	// 			return;
+	// 		case Commands.ADD:
+	// 			this.commands.cmdAdd(this, msg);
+	// 			return;
+	// 		case Commands.REMOVE:
+	// 			this.commands.cmdRemove(this, msg);
+	// 			return;
+	// 		case Commands.IMAGE:
+	// 			this.commands.cmdImage(this, msg);
+	// 			return;
+	// 		case Commands.BOOK:
+	// 			this.commands.cmdBook(this, msg);
+	// 			return;
+	// 		case Commands.SETALIAS:
+	// 			this.commands.cmdSetAlias(this, msg);
+	// 			return;
+	// 		case Commands.SETVERSION:
+	// 			this.commands.cmdSetVersion(this, msg);
+	// 			return;
+	// 		case Commands.SETDEBUG:
+	// 			this.commands.cmdSetDebug(this, msg);
+	// 			return;
+	// 		case Commands.SETTAGS:
+	// 			this.commands.cmdSetTags(this, msg);
+	// 			return;
+	// 		case Commands.STATUS:
+	// 			this.commands.cmdStatus(this, msg);
+	// 			return;
+	// 		case Commands.CREDITS:
+	// 			this.commands.cmdCredits(this, msg);
+	// 			return;
+	// 		case Commands.LEADERBOARD:
+	// 			this.commands.cmdLeaderboard(this, msg);
+	// 			return;
     }
 	}
 
@@ -134,6 +147,9 @@ module.exports = class Game {
 		}
 	}
 }
+
+
+
 
 async function handleSearchPage(game, interaction, increment){
 	request = null;

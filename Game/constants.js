@@ -1,6 +1,9 @@
 module.exports.Constants = {
 	DeveloperId: ["148332220120039424", "242102347390517248"],
-	Prefix: "m!",
+	PrefixMai: "m!",
+	PrefixGeki: "o!",
+	PrefixChuni: "c!",
+	PrefixGeneral: "h!",
 	ImageDirectory: "img/cover/",
 	FooterMessage: "🦧power - 🐬tech - 🦑intelligence - 🐯stamina - 🐉trills - 🦝spins",
 	DefaultPageSize: 20,
@@ -49,27 +52,36 @@ module.exports.Days = {
 	SATURDAY: { id: 6, label: "Saturday", search_titles: ["sat", "saturday"], prefix: `⚪`},
 }
 
+module.exports.CommandChuni = {
+	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CHUNI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+};
+module.exports.CommandMai = {
+	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "MAI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+};
+module.exports.CommandGeki = {
+	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "GEKI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+};
 module.exports.Commands = {
 	HELP: {prefix: 'help', hidden: false, admin_only: false, log_string: "CMD_HELP", example_args: "", details: "Get information."},
   RANDOM: {prefix: 'random', hidden: false, admin_only: false, log_string: "CMD_RANDOM", example_args: " <args>", details: "Selects random charts."},
-	SEARCH: {prefix: 'search', hidden: false, admin_only: false, log_string: "CMD_SEARCH", example_args: " <args>", details: "Searches the database for all charts with specified parameters."},
-	CALC: {prefix: 'calc', hidden: false, admin_only: false, log_string: "CMD_CALC", example_args: " <grade/acc> <constant>", details: "Computes the rating recieved from playing a specific difficulty"},
-	TOP: {prefix: 'top', hidden: false, admin_only: false, log_string: "CMD_TOP", example_args: " <@users/chart>", details: "Retrieve all the top scores in this server or for a specific user."},
-	STATS: {prefix: 'stats', hidden: false, admin_only: false, log_string: "CMD_STATS", example_args: "", details: "Get a leaderboards for all the players in this server, or view a specific user's stats."},
-	AMAKAGE: {prefix: 'amakage', hidden: false, admin_only: false, log_string: "CMD_AMAKAGE", example_args: " <search>", details: "Searches up for an amakage video with specified search parameter."},
-	ADD: {prefix: 'add', hidden: false, admin_only: false, log_string: "CMD_ADD", example_args: " <chart> <grade/acc>", details: "Manually adds a score into the database"},
-	REMOVE: {prefix: 'remove', hidden: false, admin_only: false, log_string: "CMD_REMOVE", example_args: " <chart>", details: "Manually removes a score from the database"},
-	IMAGE: {prefix: 'image', hidden: false, admin_only: false, log_string: "CMD_IMG", example_args: " <chart>", details: "Grabs the image/jacket from a chart."},
-	SETALIAS: {prefix: 'setalias', hidden: false, admin_only: false, log_string: "CMD_SETALIAS", example_args: " <alias>", details: "Sets your alias (username)."},
-	SETVERSION: {prefix: 'setversion', hidden: false, admin_only: true, log_string: "CMD_SETVERSION", example_args: " <version>", details: "**Admin Only**, Sets the default game version for the entire discord server."},
-	SETSCORESCHANNEL: {prefix: 'setscoreschannel', hidden: false, admin_only: true, log_string: "CMD_SETSCORESCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the score posting channel for this discord server."},
-	SETDBCHANNEL: {prefix: 'setdbchannel', hidden: false, admin_only: true, log_string: "CMD_SETDBCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the db channel for this discord server."},
-	SETDEBUG: {prefix: 'setdebug', hidden: true, admin_only: true, log_string: "CMD_DEBUG", example_args: " <bool>", details: "**Developer Only**, Toggles debug mode."},
-	SETTAGS: {prefix: 'settags', hidden: true, admin_only: true, log_string: "CMD_SETTAGS", example_args: " <tags>", details: "**Developer Only**, Sets the song's tags"},
-	STATUS: {prefix: 'status', hidden: true, admin_only: true, log_string: "CMD_STATUS", example_args: " <@user> <status>", details: "**Developer Only**, Sets a user's kumakult status"},
-	CREDITS: {prefix: 'credits', hidden: true, admin_only: true, log_string: "CMD_CREDITS", example_args: " <user> <quantity>", details: "**Developer Only**, gives credits to users."},
-	BOOK: {prefix: 'book', hidden: true, admin_only: false, log_string: "CMD_BOOK", example_args: " <time>", details: "**Kumakult Only**, schedules for the cab."},
-	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CMD_LEADERBOARD", example_args: "", details: "Displays Mythos Leaderboards"},
+	// SEARCH: {prefix: 'search', hidden: false, admin_only: false, log_string: "CMD_SEARCH", example_args: " <args>", details: "Searches the database for all charts with specified parameters."},
+	// CALC: {prefix: 'calc', hidden: false, admin_only: false, log_string: "CMD_CALC", example_args: " <grade/acc> <constant>", details: "Computes the rating recieved from playing a specific difficulty"},
+	// TOP: {prefix: 'top', hidden: false, admin_only: false, log_string: "CMD_TOP", example_args: " <@users/chart>", details: "Retrieve all the top scores in this server or for a specific user."},
+	// STATS: {prefix: 'stats', hidden: false, admin_only: false, log_string: "CMD_STATS", example_args: "", details: "Get a leaderboards for all the players in this server, or view a specific user's stats."},
+	// AMAKAGE: {prefix: 'amakage', hidden: false, admin_only: false, log_string: "CMD_AMAKAGE", example_args: " <search>", details: "Searches up for an amakage video with specified search parameter."},
+	// ADD: {prefix: 'add', hidden: false, admin_only: false, log_string: "CMD_ADD", example_args: " <chart> <grade/acc>", details: "Manually adds a score into the database"},
+	// REMOVE: {prefix: 'remove', hidden: false, admin_only: false, log_string: "CMD_REMOVE", example_args: " <chart>", details: "Manually removes a score from the database"},
+	// IMAGE: {prefix: 'image', hidden: false, admin_only: false, log_string: "CMD_IMG", example_args: " <chart>", details: "Grabs the image/jacket from a chart."},
+	// SETALIAS: {prefix: 'setalias', hidden: false, admin_only: false, log_string: "CMD_SETALIAS", example_args: " <alias>", details: "Sets your alias (username)."},
+	// SETVERSION: {prefix: 'setversion', hidden: false, admin_only: true, log_string: "CMD_SETVERSION", example_args: " <version>", details: "**Admin Only**, Sets the default game version for the entire discord server."},
+	// SETSCORESCHANNEL: {prefix: 'setscoreschannel', hidden: false, admin_only: true, log_string: "CMD_SETSCORESCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the score posting channel for this discord server."},
+	// SETDBCHANNEL: {prefix: 'setdbchannel', hidden: false, admin_only: true, log_string: "CMD_SETDBCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the db channel for this discord server."},
+	// SETDEBUG: {prefix: 'setdebug', hidden: true, admin_only: true, log_string: "CMD_DEBUG", example_args: " <bool>", details: "**Developer Only**, Toggles debug mode."},
+	// SETTAGS: {prefix: 'settags', hidden: true, admin_only: true, log_string: "CMD_SETTAGS", example_args: " <tags>", details: "**Developer Only**, Sets the song's tags"},
+	// STATUS: {prefix: 'status', hidden: true, admin_only: true, log_string: "CMD_STATUS", example_args: " <@user> <status>", details: "**Developer Only**, Sets a user's kumakult status"},
+	// CREDITS: {prefix: 'credits', hidden: true, admin_only: true, log_string: "CMD_CREDITS", example_args: " <user> <quantity>", details: "**Developer Only**, gives credits to users."},
+	// BOOK: {prefix: 'book', hidden: true, admin_only: false, log_string: "CMD_BOOK", example_args: " <time>", details: "**Kumakult Only**, schedules for the cab."},
+	// LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CMD_LEADERBOARD", example_args: "", details: "Displays Mythos Leaderboards"},
 };
 
 module.exports.Difficulties = {
