@@ -68,6 +68,12 @@ module.exports = class Game {
 
 	
     switch(prefix){
+		case Constants.PrefixChuni:
+			switch(cmd){
+				case CommandChuni.LEADERBOARD:
+					this.commands.chuniLeaderboard(this,msg);
+					return
+			}
 		case Constants.PrefixGeki:
 			switch(cmd){
 				case CommandGeki.LEADERBOARD:
@@ -195,6 +201,9 @@ async function handleSearchPage(game, interaction, increment){
 			break;
 		case CommandGeki.LEADERBOARD:
 			await game.commands.gekiLeaderboard(game, interaction.message, increment, request);
+			break;
+		case CommandChuni.LEADERBOARD:
+			await game.commands.chuniLeaderboard(game, interaction.message, increment, request);
 			break;
 	}
 

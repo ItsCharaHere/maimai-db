@@ -5,7 +5,7 @@ module.exports.Constants = {
 	PrefixChuni: "c!",
 	PrefixGeneral: "h!",
 	ImageDirectory: "img/cover/",
-	FooterMessage: "🦧power - 🐬tech - 🦑intelligence - 🐯stamina - 🐉trills - 🦝spins",
+	FooterMessage: "",
 	DefaultPageSize: 20,
 	DefaultSmallPageSize: 10
 }
@@ -142,6 +142,21 @@ module.exports.Grades = {
     SSS: { label: 'SSS', color: '#ffde59', search_titles: ["sss"], requirement: 100, multiplier: 21.6 },
     SSSP: { label: 'SSS+', color: '#fff4a8', search_titles: ["sss+"], requirement: 100.5, multiplier: 22.4 },
 };
+
+module.exports.ChunithmRanks = {
+	UNRANKED: { requirement: 0, color: 0x484848, suffix: '▫️', label: 'unranked'},
+	GREEN: { requirement: 2.00, color: 0x6b8069, suffix: '🟩', label: 'green'},
+	YELLOW: { requirement: 4.00, color: 0x9a9378, suffix: '🟨', label: 'yellow'},
+	RED: { requirement: 7.00, color: 0x9a7878, suffix: '🟥', label: 'red'},
+	PURPLE: { requirement: 10.00, color: 0x81789a, suffix: '🟪', label: 'purple'},
+	BRONZE: { requirement: 12.00, color: 0x967c61, suffix: '🥉', label: 'bronze'},
+	SILVER: { requirement: 13.00, color: 0xb7b7b7, suffix: '🥈', label: 'silver'},
+	GOLD: { requirement: 14.00, color: 0xf1c232, suffix: '🥇', label: 'gold'},
+	PLAT: { requirement: 14.50, color: 0xffe599, suffix: '💎', label: 'plat'},
+	LOWRAINBOW: { requirement: 15.00, color: 0x8ff4aa, suffix: '🌈', label: 'rainbow'},
+	HIGHRAINBOW: { requirement: 16.00, color: 0xbe8cde, suffix: '👺', label: 'high-rainbow'},
+	MAXRATING: { requirement: 17.00, color: 0xe28dec, suffix: '👹', label: 'max-rating (fes)'}
+}
 
 module.exports.OngekiRanks = {
 	UNRANKED: { requirement: 0, color: 0x484848, suffix: '▫️', label: 'unranked'},
