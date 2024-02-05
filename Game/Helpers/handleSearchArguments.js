@@ -4,6 +4,7 @@ const getTagsStringified = require("./getTagsStringified.js");
 const getAppendedArgumentsEntry = require("./getAppendedArgumentsEntry.js");
 const getCommand = require("./getCommand.js");
 
+
 function handleSearchArguments(game, query, search = null, msg = null, doNotUpdateCache = false){
 	if (search != null){
 		return search;

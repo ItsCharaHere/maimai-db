@@ -4,10 +4,10 @@ const { Constants } = require("./../constants.js");
 function handleSetPresence(client, users){
   client.user.setPresence({
     activities: [{
-        name: `${Constants.Prefix}help (${users} users)`,
+        name: `${Constants.PrefixGeneral}help (${users} users)`,
         type: ActivityType.Playing,
     }],
-    status: `${Constants.Prefix}help`
+    status: `${Constants.PrefixGeneral}help`
   });
 }
 

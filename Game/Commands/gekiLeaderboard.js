@@ -9,13 +9,13 @@ const handlePageButtons = require("./../Helpers/handlePageButtons.js");
 const handleApiCalls = require("./../Helpers/handleApiCalls.js");
 const grpc = require('@grpc/grpc-js');
 const Secrets = require("./../Secrets/secrets.js");
-const { SearchArgs, Constants, Commands, GameVersion, Locale, Ranks } = require("./../constants.js");
+const { SearchArgs, Constants, Commands, GameVersion, Locale, Ranks, CommandGeki } = require("./../constants.js");
 const { IntentsBitField, AttachmentBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ActivityType } = require('discord.js');
 
 
 
 
-async function maiLeaderboard(game, msg, increment = 0, cache = null){
+async function gekiLeaderboard(game, msg, increment = 0, cache = null){
 	let userParams = null;
 	if (cache == null){
 		let args = getSearchArguments(msg.content);
@@ -36,9 +36,10 @@ async function maiLeaderboard(game, msg, increment = 0, cache = null){
 async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, increment = 0){
 	let queryLog = ``;
 
-	proto = handleApiCalls("maimai","leaderboard")
+	proto = handleApiCalls("ongeki","leaderboard")
+
 	try {
-	var client = new proto.MaimaiLeaderboard(Secrets.MYTHOS,grpc.credentials.createSsl());
+	var client = new proto.OngekiLeaderboard(Secrets.MYTHOS,grpc.credentials.createSsl());
 	} catch {
 		msg.reply("Oops! The administrator has not set up Mythos API support yet, please contact your local dev!")
 		return;
@@ -57,7 +58,7 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 		
 	if (cache == null){
 		cache = new SearchArgs();
-		cache.command = Commands.STATS;
+		cache.command = CommandGeki.LEADERBOARD;
 		cache.page = 0;
 		cache.game_version = userParams.version.id;
 		cache.diff_version = userParams.version.id;
@@ -110,22 +111,22 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 			}
 
 			let user = cache.users[index];
-			let rating_cur = user.player_rating;
+			let rating_cur = user.player_rating/100;
 			userCount++;
 
 			
 
-			let ratingLabel = getRatingLabel(rating_cur, "maimai");
+			let ratingLabel = getRatingLabel(rating_cur, "ongeki");
 			let submitted = user.scores_submitted == null ? 0 : user.scores_submitted;
 			description += `${cache.page * Constants.DefaultPageSize + i + 1}. \`${cache.cached_users[user.user_name]}\`  Mythos Rating: ${ratingLabel.label}\n`;
 		}
 
-		let pre_description = `Viewing the current Mythos leaderboards. Type \`${Constants.PrefixMai}stats <@user>\` for a more detailed summary of that user. (UNFINISHED)\n`;
+		let pre_description = `Viewing the current Mythos leaderboards. Type \`${Constants.PrefixGeki}stats <@user>\` for a more detailed summary of that user. (UNFINISHED)\n`;
 		pre_description += `- Displaying \`${userCount} user${userCount === 1 ? '' : 's'}\` out of ${cache.users.length} result${cache.users.length === 1 ? '' : 's'}\n`;
 
 		// if (cache.game_version == game.game_version){
 		if (userParams.version.id == game.game_version){
-			pre_description += `- Version: \`FESTiVAL PLUS (Mythos)\`\n`;
+			pre_description += `- Version: \`オンゲキ BRIGHT Memory (Mythos)\`\n`;
 		} else {
 			pre_description += `- Version: \`FESTiVAL PLUS\`\n`;
 		}
@@ -153,4 +154,4 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 });
 }
 
-module.exports = maiLeaderboard;
+module.exports = gekiLeaderboard;

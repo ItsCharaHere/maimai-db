@@ -53,17 +53,17 @@ module.exports.Days = {
 }
 
 module.exports.CommandChuni = {
-	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CHUNI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CHUNI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
 };
 module.exports.CommandMai = {
-	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "MAI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "MAI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Maimai"},
 };
 module.exports.CommandGeki = {
-	leaderboard: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "GEKI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Chunithm"},
+	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "GEKI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Ongeki"},
 };
 module.exports.Commands = {
 	HELP: {prefix: 'help', hidden: false, admin_only: false, log_string: "CMD_HELP", example_args: "", details: "Get information."},
-  RANDOM: {prefix: 'random', hidden: false, admin_only: false, log_string: "CMD_RANDOM", example_args: " <args>", details: "Selects random charts."},
+  	// RANDOM: {prefix: 'random', hidden: false, admin_only: false, log_string: "CMD_RANDOM", example_args: " <args>", details: "Selects random charts."},
 	// SEARCH: {prefix: 'search', hidden: false, admin_only: false, log_string: "CMD_SEARCH", example_args: " <args>", details: "Searches the database for all charts with specified parameters."},
 	// CALC: {prefix: 'calc', hidden: false, admin_only: false, log_string: "CMD_CALC", example_args: " <grade/acc> <constant>", details: "Computes the rating recieved from playing a specific difficulty"},
 	// TOP: {prefix: 'top', hidden: false, admin_only: false, log_string: "CMD_TOP", example_args: " <@users/chart>", details: "Retrieve all the top scores in this server or for a specific user."},
@@ -74,14 +74,13 @@ module.exports.Commands = {
 	// IMAGE: {prefix: 'image', hidden: false, admin_only: false, log_string: "CMD_IMG", example_args: " <chart>", details: "Grabs the image/jacket from a chart."},
 	// SETALIAS: {prefix: 'setalias', hidden: false, admin_only: false, log_string: "CMD_SETALIAS", example_args: " <alias>", details: "Sets your alias (username)."},
 	// SETVERSION: {prefix: 'setversion', hidden: false, admin_only: true, log_string: "CMD_SETVERSION", example_args: " <version>", details: "**Admin Only**, Sets the default game version for the entire discord server."},
-	// SETSCORESCHANNEL: {prefix: 'setscoreschannel', hidden: false, admin_only: true, log_string: "CMD_SETSCORESCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the score posting channel for this discord server."},
-	// SETDBCHANNEL: {prefix: 'setdbchannel', hidden: false, admin_only: true, log_string: "CMD_SETDBCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the db channel for this discord server."},
+	SETSCORESCHANNEL: {prefix: 'setscoreschannel', hidden: false, admin_only: true, log_string: "CMD_SETSCORESCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the score posting channel for this discord server."},
+	SETDBCHANNEL: {prefix: 'setdbchannel', hidden: false, admin_only: true, log_string: "CMD_SETDBCHANNEL", example_args: " <#channel>", details: "**Admin Only**, Sets the db channel for this discord server."},
 	// SETDEBUG: {prefix: 'setdebug', hidden: true, admin_only: true, log_string: "CMD_DEBUG", example_args: " <bool>", details: "**Developer Only**, Toggles debug mode."},
 	// SETTAGS: {prefix: 'settags', hidden: true, admin_only: true, log_string: "CMD_SETTAGS", example_args: " <tags>", details: "**Developer Only**, Sets the song's tags"},
-	// STATUS: {prefix: 'status', hidden: true, admin_only: true, log_string: "CMD_STATUS", example_args: " <@user> <status>", details: "**Developer Only**, Sets a user's kumakult status"},
-	// CREDITS: {prefix: 'credits', hidden: true, admin_only: true, log_string: "CMD_CREDITS", example_args: " <user> <quantity>", details: "**Developer Only**, gives credits to users."},
-	// BOOK: {prefix: 'book', hidden: true, admin_only: false, log_string: "CMD_BOOK", example_args: " <time>", details: "**Kumakult Only**, schedules for the cab."},
-	// LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "CMD_LEADERBOARD", example_args: "", details: "Displays Mythos Leaderboards"},
+	STATUS: {prefix: 'status', hidden: true, admin_only: true, log_string: "CMD_STATUS", example_args: " <@user> <status>", details: "**Developer Only**, Sets a user's kumakult status"},
+	CREDITS: {prefix: 'credits', hidden: true, admin_only: true, log_string: "CMD_CREDITS", example_args: " <user> <quantity>", details: "**Developer Only**, gives credits to users."},
+	BOOK: {prefix: 'book', hidden: true, admin_only: false, log_string: "CMD_BOOK", example_args: " <time>", details: "**Kumakult Only**, schedules for the cab."},
 };
 
 module.exports.Difficulties = {
@@ -144,7 +143,23 @@ module.exports.Grades = {
     SSSP: { label: 'SSS+', color: '#fff4a8', search_titles: ["sss+"], requirement: 100.5, multiplier: 22.4 },
 };
 
-module.exports.Ranks = {
+module.exports.OngekiRanks = {
+	UNRANKED: { requirement: 0, color: 0x484848, suffix: '▫️', label: 'unranked'},
+	BLUE: { requirement: 1.00, color: 0x696e80, suffix: '🟦', label: 'blue'},
+	GREEN: { requirement: 2.00, color: 0x6b8069, suffix: '🟩', label: 'green'},
+	YELLOW: { requirement: 4.00, color: 0x9a9378, suffix: '🟨', label: 'yellow'},
+	RED: { requirement: 7.00, color: 0x9a7878, suffix: '🟥', label: 'red'},
+	PURPLE: { requirement: 10.00, color: 0x81789a, suffix: '🟪', label: 'purple'},
+	BRONZE: { requirement: 12.00, color: 0x967c61, suffix: '🥉', label: 'bronze'},
+	SILVER: { requirement: 13.00, color: 0xb7b7b7, suffix: '🥈', label: 'silver'},
+	GOLD: { requirement: 14.00, color: 0xf1c232, suffix: '🥇', label: 'gold'},
+	PLAT: { requirement: 14.50, color: 0xffe599, suffix: '💎', label: 'plat'},
+	LOWRAINBOW: { requirement: 15.00, color: 0x8ff4aa, suffix: '🌈', label: 'rainbow'},
+	HIGHRAINBOW: { requirement: 16.00, color: 0xbe8cde, suffix: '👺', label: 'high-rainbow'},
+	MAXRATING: { requirement: 17.00, color: 0xe28dec, suffix: '👹', label: 'max-rating (fes)'}
+}
+
+module.exports.MaimaiRanks = {
 	UNRANKED: { requirement: 0, color: 0x484848, suffix: '▫️', label: 'unranked'},
 	BLUE: { requirement: 1000, color: 0x696e80, suffix: '🟦', label: 'blue'},
 	GREEN: { requirement: 2000, color: 0x6b8069, suffix: '🟩', label: 'green'},

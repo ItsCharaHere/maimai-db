@@ -135,7 +135,7 @@ discord.on("guildCreate", (guild) => {
 
 async function privateMessage(str){
   let dev = await discord.users.fetch('242102347390517248');
-  dev.send(str);
+  // dev.send(str);
 }
 
 // Bot Got Kicked

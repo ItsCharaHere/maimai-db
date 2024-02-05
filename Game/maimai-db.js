@@ -30,15 +30,22 @@ module.exports = class Game {
 			getIsScorePostAsync(this, msg);
 		}
 
-    // Check to see if player wants to execute a command
-	var GamePrefix = msg.content.startsWith(Constants.PrefixMai || Constants.PrefixGeki || Constants.PrefixChuni)
-	var IsMai = msg.content.startsWith(Constants.PrefixMai )
-	var IsChuni = msg.content.startsWith(Constants.PrefixChuni )
-	var IsGeki = msg.content.startsWith(Constants.PrefixGeki )
+    // Check to see if player wants to execute a command (chara note: this is fucking terrible i dont know why or statements wont work here)
+	if (msg.content.startsWith(Constants.PrefixMai) == true){
+		var GamePrefix = true
+	} else if (msg.content.startsWith(Constants.PrefixGeneral) == true){
+		var GamePrefix = true
+	} else if (msg.content.startsWith(Constants.PrefixGeki) == true){
+		var GamePrefix = true
+	} else if (msg.content.startsWith(Constants.PrefixChuni) == true){
+		var GamePrefix = true
+	} else {
+		var GamePrefix = false
+	}
     if (!GamePrefix){
     	return;
     }
-
+	var prefix = msg.content.substring(0, 2)
     var cmd = getCommand(msg.content);
 		switch(cmd){
 			case Commands.SETSCORESCHANNEL:
@@ -58,23 +65,40 @@ module.exports = class Game {
 			}
 			return;
 		}
+
 	
-	console.log(msg.content)
-    switch(msg.content){
-		
-		case msg.content.startsWith(Constants.PrefixMai):
-			console.log("game prefix is mai")
+    switch(prefix){
+		case Constants.PrefixGeki:
 			switch(cmd){
-				case CommandMai.LEADERBOARD:
-					this.CommandMai.maiLeaderboard(this,msg);
+				case CommandGeki.LEADERBOARD:
+					this.commands.gekiLeaderboard(this,msg);
 					return
 			}
-			// case Commands.HELP:
-			// 	this.commands.cmdHelp(this, msg);
+		case Constants.PrefixMai:
+			switch(cmd){
+				case CommandMai.LEADERBOARD:
+					this.commands.maiLeaderboard(this,msg);
+					return
+			}
+		case Constants.PrefixGeneral:
+			switch(cmd){
+				case Commands.HELP:
+					this.commands.cmdHelp(this, msg);
+					return;
+				case Commands.SETDEBUG:
+					this.commands.cmdSetDebug(this, msg);
+					return;
+				case Commands.STATUS:
+					this.commands.cmdStatus(this, msg);
+					return;
+				case Commands.CREDITS:
+					this.commands.cmdCredits(this, msg);
+					return;
+				}
+			
+			// case Commands.SEARCH:
+			// 	this.commands.cmdSearch(this, msg);
 			// 	return;
-	// 		case Commands.SEARCH:
-	// 			this.commands.cmdSearch(this, msg);
-	// 			return;
     //   case Commands.RANDOM:
     //     this.commands.cmdRandom(this, msg);
     //     return;
@@ -108,21 +132,12 @@ module.exports = class Game {
 	// 		case Commands.SETVERSION:
 	// 			this.commands.cmdSetVersion(this, msg);
 	// 			return;
-	// 		case Commands.SETDEBUG:
-	// 			this.commands.cmdSetDebug(this, msg);
-	// 			return;
+			
 	// 		case Commands.SETTAGS:
 	// 			this.commands.cmdSetTags(this, msg);
 	// 			return;
-	// 		case Commands.STATUS:
-	// 			this.commands.cmdStatus(this, msg);
-	// 			return;
-	// 		case Commands.CREDITS:
-	// 			this.commands.cmdCredits(this, msg);
-	// 			return;
-	// 		case Commands.LEADERBOARD:
-	// 			this.commands.cmdLeaderboard(this, msg);
-	// 			return;
+			
+			
     }
 	}
 
@@ -162,7 +177,6 @@ async function handleSearchPage(game, interaction, increment){
 	if (request == null || interaction == null){
 		return;
 	}
-
 	switch(request.command){
 		case Commands.TOP:
 			await game.commands.cmdTop(game, interaction.message, increment, request);
@@ -179,8 +193,8 @@ async function handleSearchPage(game, interaction, increment){
 		case Commands.HELP:
 			await game.commands.cmdHelp(game, interaction.message, increment, request);
 			break;
-		case Commands.LEADERBOARD:
-			await game.commands.cmdLeaderboard(game, interaction.message, increment, request);
+		case CommandGeki.LEADERBOARD:
+			await game.commands.gekiLeaderboard(game, interaction.message, increment, request);
 			break;
 	}
 
