@@ -19,7 +19,7 @@ module.exports = class Game {
 		this.commands = commands
 	}
 
-  handleOnMessage(msg, userData){
+  async handleOnMessage(msg, userData){
     // Ignore bots
     if (msg.author.bot){
       return;
@@ -85,6 +85,13 @@ module.exports = class Game {
 				case CommandMai.LEADERBOARD:
 					this.commands.maiLeaderboard(this,msg);
 					return
+					case CommandMai.LOOKUP:
+						this.commands.maiUser(this,msg);
+						return
+					case CommandMai.raputa:
+						
+						this.commands.maiRaputa(this,msg);
+						return
 			}
 		case Constants.PrefixGeneral:
 			switch(cmd){

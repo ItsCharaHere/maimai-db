@@ -15,31 +15,23 @@ const { IntentsBitField, AttachmentBuilder, EmbedBuilder, ButtonBuilder, ActionR
 
 
 
-async function maiLeaderboard(game, msg, increment = 0, cache = null){
-	let userParams = null;
-	if (cache == null){
-		let args = getSearchArguments(msg.content);
-		userParams = getVersionAndUsers(game, args);
-	} else {
-		userParams = cache.userParams;
-	}
-
-	if (userParams.users.length == 0){
-		await displayMythosLeaderboardsAsync(game, msg, cache, userParams, increment);
-	} else {
-		await displayUserStatsAsync(game, msg, cache, userParams, increment);
-	}
+async function maiUser(game, msg, increment = 0, cache = null){
+	
+	
+	
+	getCardAsync(game, msg, cache, increment);
+	
 }
 
 
 
-async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, increment = 0){
+async function getCardAsync(game, msg, cache, increment = 0){
 	let queryLog = ``;
-
-	proto = handleApiCalls("maimai","leaderboard")
+	card = msg.content.substring(9)
+	proto = handleApiCalls("cards","cards")
 	
 	try {
-	var client = new proto.MaimaiLeaderboard(Secrets.MYTHOS,grpc.credentials.createSsl());
+	var client = new proto.Cards(Secrets.MYTHOS,grpc.credentials.createSsl());
 	} catch {
 		msg.reply("Oops! The administrator has not set up Mythos API support yet, please contact your local dev!")
 		return;
@@ -47,15 +39,20 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 	const requestMetadata = new grpc.Metadata();
 	requestMetadata.add('Authorization', `${Secrets.MYTHOS_API}`)
 
-	client.GetRating({"":""}, requestMetadata, async function(err, response) {
+	client.Lookup({access_code:card, titles:["maimai"]}, requestMetadata, async function(err, response) {
 		try {
-		leaderboard = response.entries
+		title = response.titles[0].title_api_id
+		msg.reply("your maimai title id is: " + title)
+		
 		} catch {
-			msg.reply("Oops! The administrator has not set up Mythos API support yet, please contact your local dev!")
+			console.log(err)
+			msg.reply("Oops! Something went wrong! please contact your local dev!")
 			return;
 		}
-
 		
+		return 
+	
+	
 	if (cache == null){
 		cache = new SearchArgs();
 		cache.command = CommandMai.LEADERBOARD;
@@ -67,10 +64,7 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 
 
 	
-		let users = [];
-		for (i = 0; i < leaderboard.length; i++){
-			users.push(await leaderboard[i])
-		}
+		
 
 		
 
@@ -154,4 +148,4 @@ async function displayMythosLeaderboardsAsync(game, msg, cache, userParams, incr
 });
 }
 
-module.exports = maiLeaderboard;
+module.exports = maiUser;

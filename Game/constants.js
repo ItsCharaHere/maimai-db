@@ -57,6 +57,8 @@ module.exports.CommandChuni = {
 };
 module.exports.CommandMai = {
 	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "MAI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Maimai"},
+	LOOKUP: {prefix: 'lookup', hidden: false, admin_only: false, log_string: "MAI_LOOKUP", example_args: "", details: "Get Leaderboard information for Maimai"},
+	raputa: {prefix: 'raputa', hidden: false, admin_only: false, log_string: "MAI_RAPUTA", example_args: "", details: "Get Leaderboard information for Maimai"},
 };
 module.exports.CommandGeki = {
 	LEADERBOARD: {prefix: 'leaderboard', hidden: false, admin_only: false, log_string: "GEKI_LEADERBOARD", example_args: "", details: "Get Leaderboard information for Ongeki"},
